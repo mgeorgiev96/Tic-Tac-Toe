@@ -1,0 +1,220 @@
+@keyframes animate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes move1 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Fredoka One", cursive;
+  background-image: linear-gradient(to top, #2c3e50, #3498db);
+}
+
+header {
+  font-size: 2rem;
+  text-align: center;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 35vw;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  position: relative;
+  overflow: hidden;
+}
+.container span {
+  position: absolute;
+  background-color: #45B8AC;
+  z-index: 1;
+  box-shadow: 0 0 5px #45B8AC, 0 0 25px #45B8AC, 0 0 50px #45B8AC, 0 0 200px #45B8AC;
+}
+.container span:nth-child(1) {
+  width: 100%;
+  height: 2px;
+  top: 0;
+  animation: move 2s linear infinite;
+  left: 0;
+}
+.container span:nth-child(2) {
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  right: 0;
+  animation: move 2s linear infinite reverse;
+}
+.container span:nth-child(3) {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 2px;
+  animation: move1 2s linear infinite reverse;
+  animation-delay: 1s;
+}
+.container span:nth-child(4) {
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 2px;
+  animation: move1 2s linear infinite;
+  animation-delay: 1s;
+}
+.container .board {
+  width: 33%;
+  height: 99%;
+  display: grid;
+  grid-template-columns: repeat(3, 100%);
+  justify-content: center;
+}
+.container .board div {
+  border: 1px solid white;
+  font-size: 5rem;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: black;
+}
+.container .board div:hover {
+  cursor: pointer;
+}
+.container .board div:nth-child(1), .container .board div:nth-child(4), .container .board div:nth-child(7) {
+  border-left: none;
+}
+.container .board div:nth-child(3), .container .board div:nth-child(6), .container .board div:nth-child(9) {
+  border-right: none;
+}
+.container .board div:nth-child(1), .container .board div:nth-child(2), .container .board div:nth-child(3) {
+  border-top: none;
+}
+.container .board div:nth-child(7), .container .board div:nth-child(8), .container .board div:nth-child(9) {
+  border-bottom: none;
+}
+
+.activeX {
+  animation: animate 350ms ease-in-out;
+  color: #9B2335;
+  text-shadow: 0 0 3px #9B2335, 0 0 5px #9B2335, 0 0 10px #9B2335, 0 0 20px #9B2335;
+}
+
+.activeO {
+  animation: animate 350ms ease-in-out;
+  color: #009B77;
+  text-shadow: 0 0 3px #009B77, 0 0 5px #009B77, 0 0 10px #009B77, 0 0 20px #009B77;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  top: 25px;
+  left: 25px;
+  position: absolute;
+  display: none;
+}
+.loader span {
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  position: absolute;
+  border-radius: 50%;
+}
+.loader span:nth-child(1) {
+  background-image: linear-gradient(#03001e, #7303c0, #ec38bc, #fdeff9);
+  width: 110px;
+  height: 110px;
+  top: -5px;
+  left: -5px;
+  z-index: 1;
+  animation: loading 2s linear infinite;
+  animation-delay: 500ms;
+}
+.loader span:nth-child(2) {
+  background-image: linear-gradient(#1a2a6c, #b21f1f, #fdbb2d);
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  animation: loading 2s linear infinite;
+  animation-delay: 1s;
+}
+.loader span:nth-child(3) {
+  background-image: linear-gradient(#fc00ff, #00dbde);
+  width: 120px;
+  height: 120px;
+  top: -10px;
+  left: -10px;
+  z-index: 0;
+  animation: loading 2s linear infinite;
+}
+.loader span:nth-child(4) {
+  z-index: 3;
+  background-color: black;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  top: 5px;
+  left: 5px;
+}
+
+@media all and (max-width: 750px) {
+  .container {
+    width: 95vw;
+  }
+
+  header {
+    font-size: 1.5rem;
+  }
+}
+@media all and (max-width: 1300px) and (min-width: 750px) {
+  .container {
+    width: 70vw;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
